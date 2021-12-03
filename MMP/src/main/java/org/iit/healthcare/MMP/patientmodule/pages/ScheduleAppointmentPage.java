@@ -3,7 +3,7 @@ package org.iit.healthcare.MMP.patientmodule.pages;
 import java.util.HashMap;
 import java.util.List;
 
-import org.iit.healthcare1.Utility;
+import org.iit.healthcare.Utility;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

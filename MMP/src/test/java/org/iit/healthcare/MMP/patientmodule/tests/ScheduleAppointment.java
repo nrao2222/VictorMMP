@@ -3,7 +3,7 @@ package org.iit.healthcare.MMP.patientmodule.tests;
 import java.io.IOException;
 import java.util.HashMap;
 
-import org.iit.healthcare1.Utility;
+import org.iit.healthcare.Utility;
 import org.iit.healthcare.MMP.HelperClass;
 import org.iit.healthcare.MMP.TestBaseClass;
 import org.iit.healthcare.MMP.patientmodule.pages.ScheduleAppointmentPage;
