@@ -18,7 +18,7 @@ import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
 
-// Committing to github - trying to commit to a branch
+// 
 
 public class Utility {
 
@@ -130,9 +130,30 @@ public class Utility {
 		return i;
 	}
 	
+	//random 5 digit zip
+	public static int getRandomZip(int boundary)
+	{
+		Random r = new Random(System.currentTimeMillis());
+		//System.out.println("Random r is: " +r);
+		return(1+r.nextInt(5)) * 10000 + r.nextInt(boundary);
+	}
+	
+	public static int getRandomZip(int boundary, int digits)
+	{
+		Random r = new Random(System.currentTimeMillis());
+		if(digits < 5)
+		{
+			//generating invalid zip (less than 5 digit number)
+			return(1+r.nextInt(2)) * 100 + r.nextInt(boundary);
+		}
+		else
+		{
+			return(1+r.nextInt(5)) * 10000 + r.nextInt(boundary);
+		}
+	}
+	
 	public static char getRandomChar()
 	{
-		 
 		Random r1 = new Random();
 		int k = 65 + r1.nextInt(26);
 		char c2= (char) k;
