@@ -8,11 +8,11 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class EditProfilePage {
+public class EditProfileZipPage {
 	
 	WebDriver driver;
 	
-	public EditProfilePage(WebDriver dr)
+	public EditProfileZipPage(WebDriver dr)
 	{
 		this.driver = dr;
 	}
