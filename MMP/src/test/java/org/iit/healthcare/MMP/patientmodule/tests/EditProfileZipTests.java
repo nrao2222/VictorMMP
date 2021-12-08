@@ -8,10 +8,10 @@ import org.iit.healthcare.MMP.patientmodule.pages.EditProfileZipPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class EditProfileZip extends TestBaseClass {
+public class EditProfileZipTests extends TestBaseClass {
 	
 	@Test (priority = 1)
-	public void editProfileZipTests() throws InterruptedException
+	public void editProfileValidZip() throws InterruptedException
 	{
 		String field = "zip";
 		System.out.println("\n========================================================");
