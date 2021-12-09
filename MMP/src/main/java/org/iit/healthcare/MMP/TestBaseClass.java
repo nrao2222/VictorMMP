@@ -11,6 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -31,9 +32,9 @@ public class TestBaseClass {
 	protected Properties prop;
 	
 	//@Test
-	//@BeforeMethod
-	//@BeforeCLass >>>>> doesnt work?????
-	@BeforeTest
+	//@BeforeTest
+	
+	@BeforeClass
 	public void instantiateDriver() throws IOException, InterruptedException
 	{
 		System.out.println("+++ In instantiateDriver +++");

@@ -133,22 +133,21 @@ public class Utility {
 	//random 5 digit zip
 	public static int getRandomZip(int boundary)
 	{
-		Random r = new Random(System.currentTimeMillis());
-		//System.out.println("Random r is: " +r);
-		return(1+r.nextInt(5)) * 10000 + r.nextInt(boundary);
+		
+		Random r = new Random();
+		return(r.nextInt(boundary) * 1000);
 	}
 	
 	public static int getRandomZip(int boundary, int digits)
 	{
-		Random r = new Random(System.currentTimeMillis());
+		Random r = new Random();
 		if(digits < 5)
 		{
-			//generating invalid zip (less than 5 digit number)
-			return(1+r.nextInt(2)) * 100 + r.nextInt(boundary);
+			return(r.nextInt(boundary)*100);
 		}
 		else
 		{
-			return(1+r.nextInt(5)) * 10000 + r.nextInt(boundary);
+			return(r.nextInt(boundary) * 10000);
 		}
 	}
 	

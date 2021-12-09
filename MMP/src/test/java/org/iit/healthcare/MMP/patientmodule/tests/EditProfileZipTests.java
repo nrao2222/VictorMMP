@@ -42,23 +42,55 @@ public class EditProfileZipTests extends TestBaseClass {
 		System.out.println("Profile field: "+field+" edited successfully!!!!");
 		
 	}
+	
 
 	@Test (priority = 2)
 	public void editProfileInvalidZip() throws InterruptedException
 	{
-		System.out.println("\n========================================================");
-		System.out.println("++++ TC:  EDIT PROFILE-ZIP WITH INVALID ZIP CODE ++++");
-		System.out.println("========================================================\n");
+		System.out.println("\n================================================================");
+		System.out.println("++++ TC:  EDIT PROFILE-ZIP WITH INVALID ZIP: SHORT ZIP CODE ++++");
+		System.out.println("================================================================\n");
 		
 		EditProfileZipPage epp = new EditProfileZipPage(driver);
 		epp.clickEditButton();
-		epp.editProfileInvalidZip();
+		epp.editProfileInvalidZip(10, 3);
 		String errMsg = epp.editProfileInvalidZipSaveBtn();
 		Assert.assertTrue(errMsg.contains("please enter zipcode"));
 		System.out.println("Expected Invalid Zip Error Msg:: "+errMsg+" :: is displayed!!!");
 	}
 	
+	
 	@Test (priority = 3)
+	public void editProfileLongZip() throws InterruptedException
+	{
+		System.out.println("\n=================================================================");
+		System.out.println("++++ TC:  EDIT PROFILE-ZIP WITH INVALID ZIP: LONG ZIP CODE ++++");
+		System.out.println("=================================================================\n");
+		
+		EditProfileZipPage epp = new EditProfileZipPage(driver);
+		epp.editProfileInvalidZip(1000, 6);
+		String errMsg = epp.editProfileInvalidZipSaveBtn();
+		Assert.assertTrue(errMsg.contains("please enter zipcode"));
+		System.out.println("Expected Invalid Zip Error Msg:: "+errMsg+" :: is displayed!!!");
+	}
+	
+	
+	@Test (priority = 4)
+	public void editProfileAlphaZip() throws InterruptedException
+	{
+		System.out.println("\n==================================================================");
+		System.out.println("++++ TC:  EDIT PROFILE-ZIP WITH INVALID ZIP: ALPHA ZIP CODE ++++");
+		System.out.println("===================================================================\n");
+		
+		EditProfileZipPage epp = new EditProfileZipPage(driver);
+		epp.editProfileInvalidZip(0, 0);
+		String errMsg = epp.editProfileInvalidZipSaveBtn();
+		Assert.assertTrue(errMsg.contains("please enter zipcode"));
+		System.out.println("Expected Invalid Zip Error Msg:: "+errMsg+" :: is displayed!!!");
+	}
+	
+	
+	@Test (priority = 5)
 	public void editProfileBlankZip() throws InterruptedException
 	{
 		System.out.println("\n=========================================================");

@@ -40,6 +40,7 @@ public class EditProfileZipPage {
 		System.out.println("+++ In Profile tab getProfileDetails() +++");
 		HashMap <String, String> profileDetails = new HashMap<String, String>();
 
+		//profileDetails.put("First Name", driver.findElement(By.xpath("//table[@class='table']/tbody/tr[2]/td[1]")).getAttribute("value"));
 		profileDetails.put("First Name", driver.findElement(By.xpath("//input[@name='firstname']")).getAttribute("value"));
 		profileDetails.put("Last Name", driver.findElement(By.xpath("//input[@id='lname']")).getAttribute("value"));
 		profileDetails.put("License", driver.findElement(By.xpath("//input[@id='licn']")).getAttribute("value"));
@@ -57,15 +58,13 @@ public class EditProfileZipPage {
 	
 	public void editProfileZip() throws InterruptedException
 	{
-		int randZip = Utility.getRandomZip(2000);
+		int randZip = Utility.getRandomZip(100);
 		
 		System.out.println("+++ In Profile tab editProfile() +++");
 		driver.findElement(By.xpath("//input[@id='zip']")).clear();
 		Thread.sleep(2000);
-		//driver.findElement(By.xpath("//input[@id='zip']")).sendKeys(randZip);  
 		driver.findElement(By.xpath("//input[@id='zip']")).sendKeys(""+randZip+"");  
-		String newZip = driver.findElement(By.xpath("//input[@id='zip']")).getAttribute("value");
-		System.out.println("Changing the zip to: " +newZip);	
+		System.out.println("Changing the zip to: "  +randZip);
 	}
 	
 	public void editProfileDeleteZip() throws InterruptedException
@@ -76,14 +75,23 @@ public class EditProfileZipPage {
 		Thread.sleep(2000);	
 	}
 	
-	public void editProfileInvalidZip() throws InterruptedException
+	public void editProfileInvalidZip(int boundary, int digits) throws InterruptedException
 	{
 		System.out.println("++++ In Profile tab editProfileInvalidZip() ++++");
-		int invalidZip = Utility.getRandomZip(2000, 3);
-		System.out.println("Invalid zip to be entered: " +invalidZip);
-		driver.findElement(By.xpath("//input[@id='zip']")).clear();
-		Thread.sleep(2000);
-		driver.findElement(By.xpath("//input[@id='zip']")).sendKeys(""+invalidZip+"");
+		
+		if (boundary == 0 & digits == 0) {
+			String invalidZip = Utility.getRandomString(7);
+			System.out.println("Invalid zip to be entered: " + invalidZip);
+			driver.findElement(By.xpath("//input[@id='zip']")).clear();
+			Thread.sleep(2000);
+			driver.findElement(By.xpath("//input[@id='zip']")).sendKeys("" + invalidZip + "");
+		} else {
+			int invalidZip = Utility.getRandomZip(boundary, digits);
+			System.out.println("Invalid zip to be entered: " + invalidZip);
+			driver.findElement(By.xpath("//input[@id='zip']")).clear();
+			Thread.sleep(2000);
+			driver.findElement(By.xpath("//input[@id='zip']")).sendKeys("" + invalidZip + "");
+		}	
 		
 	}
 	
