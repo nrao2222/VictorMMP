@@ -33,7 +33,7 @@ public class HelperClass {
 	//@Test
 	public void launchApplication(String url)
 	{
-		System.out.println("+++In launchApplication+++");
+		System.out.println("+++In launchApplication with +++" +url);
 		driver.get(url);
 		driver.manage().timeouts().implicitlyWait(25, TimeUnit.SECONDS);
 		driver.manage().timeouts().pageLoadTimeout(50, TimeUnit.SECONDS);
@@ -67,6 +67,12 @@ public class HelperClass {
 		WebElement name = driver.findElement(By.xpath("//h3[@class='panel-title']"));
 		//System.out.println("******* name is :" +name.getText());
 		return name.getText();
+	}
+	
+	public void pageRefresh()
+	{
+		System.out.println("+++ In pageRefresh() +++");
+		driver.navigate().refresh();
 	}
 	
 //	public String getLoginPageName()

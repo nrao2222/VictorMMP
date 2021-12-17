@@ -130,12 +130,49 @@ public class Utility {
 		return i;
 	}
 	
-	//random 5 digit zip
+	//random valid 5 digit zip
 	public static int getRandomZip(int boundary)
 	{
 		
 		Random r = new Random();
-		return(r.nextInt(boundary) * 1000);
+		int zip = r.nextInt(boundary);
+		
+		if(zip == 0)
+		{
+			zip = zip + 1;
+		}
+		
+		if (zip > 0 && zip < 10) {
+			//System.out.println("@@@ In if zip >0 and < 10");
+			zip = zip * 10000;
+			//System.out.println("@@@ while-if zip is: " + zip);
+		} else if (zip >= 10 && zip < 100) {
+			//System.out.println("@@@ In else if zip > 10 and < 100");
+			zip = zip * 1000;
+			//System.out.println("@@@ while-else zip is: " + zip);
+		} 
+		return zip;
+
+	}
+	
+	
+	public static int getRandomInvalidZip(int boundary)
+	{
+		Random r = new Random();
+		
+		if(boundary == 0)
+		{
+			boundary = boundary + 1;
+		}
+		
+		if(boundary < 10)
+		{
+			return(r.nextInt(boundary)*100);
+		}
+		else
+		{
+			return(r.nextInt(boundary) * 100000);
+		}					
 	}
 	
 	public static int getRandomZip(int boundary, int digits)

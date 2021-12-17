@@ -8,11 +8,11 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class EditProfileZipPage {
+public class EditProfileZipPageOrig {
 	
 	WebDriver driver;
 	
-	public EditProfileZipPage(WebDriver dr)
+	public EditProfileZipPageOrig(WebDriver dr)
 	{
 		this.driver = dr;
 	}
@@ -56,15 +56,18 @@ public class EditProfileZipPage {
 		
 	}
 	
-	public void editProfileZip() throws InterruptedException
+	
+	public int editProfileZip() throws InterruptedException
 	{
 		int randZip = Utility.getRandomZip(100);
 		
-		System.out.println("+++ In Profile tab editProfile() +++");
+		System.out.println("+++ In Profile tab editProfileZip() +++");
 		driver.findElement(By.xpath("//input[@id='zip']")).clear();
 		Thread.sleep(2000);
 		driver.findElement(By.xpath("//input[@id='zip']")).sendKeys(""+randZip+"");  
 		System.out.println("Changing the zip to: "  +randZip);
+		//write this value to the HMap (expected HMap after the field is edited)
+		return randZip;
 	}
 	
 	public void editProfileDeleteZip() throws InterruptedException
@@ -92,6 +95,37 @@ public class EditProfileZipPage {
 			Thread.sleep(2000);
 			driver.findElement(By.xpath("//input[@id='zip']")).sendKeys("" + invalidZip + "");
 		}	
+		
+	}
+	
+	public void editProfileInvalidZip(String str) throws InterruptedException
+	{
+		System.out.println("++++ In Profile tab editProfileInvalidZip() ++++");
+		
+		if(str.contains("short"))
+		{
+			int invalidZip = Utility.getRandomInvalidZip(9);
+			System.out.println("Invalid  short zip to be entered: " + invalidZip);
+			driver.findElement(By.xpath("//input[@id='zip']")).clear();
+			Thread.sleep(2000);
+			driver.findElement(By.xpath("//input[@id='zip']")).sendKeys("" + invalidZip + "");
+		}
+		if(str.contains("long"))
+		{
+			int invalidZip = Utility.getRandomInvalidZip(100);
+			System.out.println("Invalid long zip to be entered: " + invalidZip);
+			driver.findElement(By.xpath("//input[@id='zip']")).clear();
+			Thread.sleep(2000);
+			driver.findElement(By.xpath("//input[@id='zip']")).sendKeys("" + invalidZip + "");
+		}
+		if(str.contains("alpha"))
+		{
+			String invalidZip = Utility.getRandomString(8);
+			System.out.println("Invalid alpha zip to be entered: " + invalidZip);
+			driver.findElement(By.xpath("//input[@id='zip']")).clear();
+			Thread.sleep(2000);
+			driver.findElement(By.xpath("//input[@id='zip']")).sendKeys("" + invalidZip + "");
+		}
 		
 	}
 	
@@ -125,7 +159,7 @@ public class EditProfileZipPage {
 					return bool;
 				} else {
 					//System.out.println("" + field + " Updated after the Edit!!!");
-					bool = true;
+					//bool = true;
 				}
 			} else {
 				if (m1.get(key).equals(m2.get(key))) {
@@ -140,34 +174,6 @@ public class EditProfileZipPage {
 		}
 		return bool;
 	}
-	
-	
-	
-	
-	public void temp()
-	{
-//		String name = driver.findElement(By.xpath("//table[@class='table']/tbody/tr[2]/td[1]")).getText();
-//		//String name = driver.findElement(By.xpath("//form[@action='profileup.php']/div/table/tbody/tr[2]/td[1]")).getText();
-		//String name = driver.findElement(By.xpath("//form[@name='myform']/div/table/tbody/tr[2]/td[1]")).getText();
-		//System.out.println("Profile name is:"+name);
-		
-//		String zip = driver.findElement(By.xpath("//table[@class='table']/tbody/tr[12]/td[2]")).getText();
-//		System.out.println("Profile zip is:"+zip);
-//		
-//		//profileDetails.put("First Name", driver.findElement(By.xpath("//table[@class='table']/tbody/tr[2]/td[1]")).getText());
-//		profileDetails.put("First Name", driver.findElement(By.xpath("//table[@class='table']/tbody/tr[2]/td[1]")).getAttribute("value"));
-//		profileDetails.put("Last Name", driver.findElement(By.xpath("//table[@class='table']/tbody/tr[2]/td[2]")).getText());
-//		profileDetails.put("License", driver.findElement(By.xpath("//table[@class='table']/tbody/tr[4]/td[1]")).getText());
-//		profileDetails.put("SSN", driver.findElement(By.xpath("//table[@class='table']/tbody/tr[4]/td[2]")).getText());
-//		profileDetails.put("Address", driver.findElement(By.xpath("//table[@class='table']/tbody/tr[6]/td[1]")).getText());
-//		profileDetails.put("Age", driver.findElement(By.xpath("//table[@class='table']/tbody/tr[6]/td[2]")).getText());
-//		profileDetails.put("Weight", driver.findElement(By.xpath("//table[@class='table']/tbody/tr[8]/td[1]")).getText());
-//		profileDetails.put("Height", driver.findElement(By.xpath("//table[@class='table']/tbody/tr[8]/td[2]")).getText());
-//		profileDetails.put("City", driver.findElement(By.xpath("//table[@class='table']/tbody/tr[10]/td[1]")).getText());
-//		profileDetails.put("State", driver.findElement(By.xpath("//table[@class='table']/tbody/tr[12]/td[1]")).getText());
-//		profileDetails.put("Zip", driver.findElement(By.xpath("//table[@class='table']/tbody/tr[12]/td[2]")).getText());
-//		profileDetails.put("Provider", driver.findElement(By.xpath("//table[@class='table']/tbody/tr[15]/td[1]")).getText());
-//		profileDetails.put("Insurance", driver.findElement(By.xpath("//table[@class='table']/tbody/tr[15]/td[2]")).getText());
-		
-	}
 }
+	
+	
